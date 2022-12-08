@@ -4,7 +4,7 @@ import { handleOnSignUp } from '../../services/authServices';
 
 const SignUpPage = () => {
     const [userName, setUserName] = useState('Cristian Araya');
-    const [email, setEmail] = useState('cristian@gmail.com');
+    const [email, setEmail] = useState('dev.arayacristian@gmail.com');
     const [password, setPassword] = useState('123456');
     const [error, setError] = useState({ ok: false, msg: null });
 
@@ -14,7 +14,7 @@ const SignUpPage = () => {
         e.preventDefault();
         const resp = await handleOnSignUp(userName, email, password, setError);
         if (!resp?.ok) {
-            setError({ ok: true, msg: resp.errors[0] });
+            setError({ ok: true, msg: resp.msg });
             return;
         }
         setError({ ok: false, msg: null });
@@ -45,6 +45,7 @@ const SignUpPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"
                     required
+                    type="email"
                     onInvalid={(e) =>
                         e.target.setCustomValidity('Email required')
                     }
@@ -54,6 +55,7 @@ const SignUpPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
+                    type="password"
                     onInvalid={(e) =>
                         e.target.setCustomValidity('Password required')
                     }

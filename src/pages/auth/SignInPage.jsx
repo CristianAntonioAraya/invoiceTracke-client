@@ -13,7 +13,6 @@ const SignInPage = () => {
         e.preventDefault();
         const resp = await handleOnSignIn(email, password);
         if (!resp?.ok) {
-            console.log(resp);
             setError({ ok: true, msg: resp.msg });
             return;
         }
@@ -36,6 +35,7 @@ const SignInPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"
                     required
+                    type="email"
                     onInvalid={(e) =>
                         e.target.setCustomValidity('Email required')
                     }
@@ -45,6 +45,7 @@ const SignInPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
+                    type="password"
                     onInvalid={(e) =>
                         e.target.setCustomValidity('Password required')
                     }
@@ -52,7 +53,7 @@ const SignInPage = () => {
                 <button>Submit</button>
                 <div className="auth__footer">
                     <Link to={'/signUp'}>Not have an account?</Link>
-                    <Link to={'/signUp'}>Forgot password</Link>
+                    <Link to={'/forgot'}>Forgot password</Link>
                 </div>
             </form>
         </div>
